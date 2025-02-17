@@ -31,7 +31,7 @@ public class InvestmentHistory {
     private float finalAmount;
     @ManyToOne
     @JoinColumn(name = "currency_id", nullable = false)
-    private Currency currency;
+    private CurrencyEntity currency;
     @JoinColumn(name = "investor_id", nullable = false)
     private Investor investor;
 }

@@ -31,5 +31,5 @@ public class ExchangeRate {
     private float dailyRate;
     @ManyToOne
     @JoinColumn(name = "currencyId", nullable = false)
-    private Currency currency;
+    private CurrencyEntity currency;
 }

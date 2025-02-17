@@ -1,7 +1,9 @@
 package com.gabrielfernandes.giro_tech.service;
 
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
+import com.gabrielfernandes.giro_tech.entity.CurrencyEntity;
 import com.gabrielfernandes.giro_tech.repository.CurrencyRepository;
 
 import lombok.RequiredArgsConstructor;
@@ -10,6 +12,11 @@ import lombok.RequiredArgsConstructor;
 @Service
 public class CurrencyService {
     private final CurrencyRepository currencyRepository;
+
+    @Transactional
+    public CurrencyEntity save(CurrencyEntity currency) {
+        return currencyRepository.save(currency);
+    }
 
     
 }

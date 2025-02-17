@@ -1,8 +1,13 @@
 package com.gabrielfernandes.giro_tech.web.controller;
 
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.gabrielfernandes.giro_tech.entity.Investor;
 import com.gabrielfernandes.giro_tech.service.InvestorService;
 
 import lombok.RequiredArgsConstructor;
@@ -12,4 +17,10 @@ import lombok.RequiredArgsConstructor;
 @RequestMapping("api/v1/investors")
 public class InvestorController {
     private final InvestorService investorService;
+
+    @PostMapping
+    public ResponseEntity<Investor> create(@RequestBody Investor investor){
+        Investor investorResponse = investorService.save(investor);
+        return ResponseEntity.status(HttpStatus.CREATED).body(investorResponse);
+    }
 }

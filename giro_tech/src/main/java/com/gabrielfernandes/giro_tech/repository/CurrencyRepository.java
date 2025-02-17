@@ -1,7 +1,8 @@
 package com.gabrielfernandes.giro_tech.repository;
 
-import java.util.Currency;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
-public interface CurrencyRepository extends JpaRepository<Currency, Integer> {}
+import com.gabrielfernandes.giro_tech.entity.CurrencyEntity;
+
+public interface CurrencyRepository extends JpaRepository<CurrencyEntity, Integer> {}

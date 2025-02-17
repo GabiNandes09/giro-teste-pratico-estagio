@@ -1,5 +1,6 @@
 package com.gabrielfernandes.giro_tech.entity;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -15,11 +16,11 @@ import lombok.Setter;
 @Getter @Setter @NoArgsConstructor @AllArgsConstructor
 @Entity
 @Table(name = "currencies")
-public class Currency {
+public class CurrencyEntity implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
-    private int id;
+    private Integer id;
     @Column(name = "name", nullable = false, unique = true)
     private String name;
     @Column(name = "type", nullable = false)
