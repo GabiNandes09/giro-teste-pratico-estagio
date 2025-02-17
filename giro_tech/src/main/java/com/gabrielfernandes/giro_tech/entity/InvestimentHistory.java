@@ -1,11 +1,37 @@
 package com.gabrielfernandes.giro_tech.entity;
 
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.Table;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
+@Getter @Setter @NoArgsConstructor @AllArgsConstructor
+@Entity
+@Table(name = "investiment_historys")
 public class InvestimentHistory {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id")
     private int id;
-    private float initial_amount;
+    @Column(name = "initial_amount", nullable = false)
+    private float initialAmount;
+    @Column(name = "months", nullable = false)
     private int months;
-    private float interest_rate;
-    private float final_amount;
-    private int currency_id;
-    private int investor_id;
+    @Column(name = "interest_rate", nullable = false)
+    private float interestRate;
+    @Column(name = "final_amount", nullable = false)
+    private float finalAmount;
+    @ManyToOne
+    @JoinColumn(name = "currency_id", nullable = false)
+    private Currency currency;
+    @JoinColumn(name = "investor_id", nullable = false)
+    private Investor investor;
 }
