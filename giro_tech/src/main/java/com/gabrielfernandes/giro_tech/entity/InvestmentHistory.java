@@ -16,7 +16,7 @@ import lombok.Setter;
 @Getter @Setter @NoArgsConstructor @AllArgsConstructor
 @Entity
 @Table(name = "investiment_historys")
-public class InvestimentHistory {
+public class InvestmentHistory {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")

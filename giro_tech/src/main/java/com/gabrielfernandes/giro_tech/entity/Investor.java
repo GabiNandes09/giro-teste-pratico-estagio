@@ -27,5 +27,5 @@ public class Investor {
 
     @OneToMany(mappedBy = "investor", cascade = CascadeType.ALL, orphanRemoval = true)
     @JsonBackReference
-    private List<InvestimentHistory> investimentHistories = new ArrayList<>();
+    private List<InvestmentHistory> investimentHistories = new ArrayList<>();
 }

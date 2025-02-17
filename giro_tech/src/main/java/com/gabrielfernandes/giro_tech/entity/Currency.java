@@ -31,5 +31,5 @@ public class Currency {
 
     @OneToMany(mappedBy = "currency", cascade = CascadeType.ALL, orphanRemoval = true)
     @JsonBackReference
-    private List<InvestimentHistory> investimentHistories = new ArrayList<>();
+    private List<InvestmentHistory> investimentHistories = new ArrayList<>();
 }
