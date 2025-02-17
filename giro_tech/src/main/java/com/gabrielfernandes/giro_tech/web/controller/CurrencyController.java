@@ -1,7 +1,10 @@
 package com.gabrielfernandes.giro_tech.web.controller;
 
+import java.util.List;
+
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -22,5 +25,11 @@ public class CurrencyController {
     public ResponseEntity<CurrencyEntity> create(@RequestBody CurrencyEntity currency){
         CurrencyEntity response = currencyService.save(currency);
         return ResponseEntity.status(HttpStatus.CREATED).body(response);
+    }
+
+    @GetMapping()
+    public ResponseEntity<List<CurrencyEntity>> getAll(){
+        List<CurrencyEntity> response = currencyService.getAll();
+        return ResponseEntity.ok().body(response);
     }
 }

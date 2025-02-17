@@ -1,7 +1,10 @@
 package com.gabrielfernandes.giro_tech.web.controller;
 
+import java.util.List;
+
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -22,5 +25,11 @@ public class ExchangeRateController {
     public ResponseEntity<ExchangeRate> create (@RequestBody ExchangeRate exchangeRate){
         ExchangeRate exchangeRateResponse = exchangeRateService.save(exchangeRate);
         return ResponseEntity.status(HttpStatus.CREATED).body(exchangeRateResponse);
+    }
+
+    @GetMapping
+    public ResponseEntity<List<ExchangeRate>> getAll(){
+        List<ExchangeRate> response = exchangeRateService.getAll();
+        return ResponseEntity.ok().body(response);
     }
 }

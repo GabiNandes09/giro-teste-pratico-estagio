@@ -1,5 +1,7 @@
 package com.gabrielfernandes.giro_tech.service;
 
+import java.util.List;
+
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -16,6 +18,11 @@ public class CurrencyService {
     @Transactional
     public CurrencyEntity save(CurrencyEntity currency) {
         return currencyRepository.save(currency);
+    }
+
+    @Transactional(readOnly = true)
+    public List<CurrencyEntity> getAll() {
+        return currencyRepository.findAll();
     }
 
     

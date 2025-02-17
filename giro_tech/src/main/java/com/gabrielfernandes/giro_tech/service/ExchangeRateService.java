@@ -1,5 +1,7 @@
 package com.gabrielfernandes.giro_tech.service;
 
+import java.util.List;
+
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -16,5 +18,10 @@ public class ExchangeRateService {
     @Transactional
     public ExchangeRate save(ExchangeRate exchangeRate) {
         return exchangeRateRepository.save(exchangeRate);
+    }
+
+    @Transactional(readOnly = true)
+    public List<ExchangeRate> getAll() {
+        return exchangeRateRepository.findAll();
     }
 }

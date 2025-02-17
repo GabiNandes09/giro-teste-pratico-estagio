@@ -1,5 +1,7 @@
 package com.gabrielfernandes.giro_tech.service;
 
+import java.util.List;
+
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -16,5 +18,10 @@ public class InvestmentHistoryService {
     @Transactional
     public InvestmentHistory save(InvestmentHistory investmentHistory) {
         return investmentHistoryRepository.save(investmentHistory);
+    }
+
+    @Transactional(readOnly = true)
+    public List<InvestmentHistory> getAll() {
+        return investmentHistoryRepository.findAll();
     }
 }

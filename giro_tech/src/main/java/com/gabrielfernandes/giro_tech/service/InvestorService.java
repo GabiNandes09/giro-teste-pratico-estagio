@@ -1,5 +1,7 @@
 package com.gabrielfernandes.giro_tech.service;
 
+import java.util.List;
+
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -16,5 +18,10 @@ public class InvestorService {
     @Transactional
     public Investor save(Investor investor) {
         return investorRepository.save(investor);
+    }
+
+    @Transactional(readOnly = true)
+    public List<Investor> getAll() {
+        return investorRepository.findAll();
     }
 }
