@@ -17,6 +17,20 @@ public class CurrencyService {
 
     @Transactional
     public CurrencyEntity save(CurrencyEntity currency) {
+        if (currency == null) {
+            throw new IllegalArgumentException("A moeda não pode ser nula.");
+        }
+        if (currency.getName() == null || currency.getName().trim().isEmpty()) {
+            throw new IllegalArgumentException("O nome da moeda é obrigatório.");
+        }
+        if (currency.getType() == null || currency.getType().trim().isEmpty()) {
+            throw new IllegalArgumentException("O tipo da moeda é obrigatório.");
+        }
+
+        if (currencyRepository.existsByName(currency.getName())) {
+            throw new IllegalArgumentException("Já existe uma moeda com este nome.");
+        }
+        
         return currencyRepository.save(currency);
     }
 
