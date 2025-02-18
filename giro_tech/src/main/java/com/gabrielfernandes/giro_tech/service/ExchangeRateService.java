@@ -1,6 +1,8 @@
 package com.gabrielfernandes.giro_tech.service;
 
-import java.time.LocalDate;
+import java.time.Instant;
+import java.time.temporal.ChronoUnit;
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.stereotype.Service;
@@ -28,7 +30,7 @@ public class ExchangeRateService {
 
     @Transactional(readOnly = true)
     public List<ExchangeRate> getRecent(){
-        LocalDate daysAgo = LocalDate.now().minusDays(7);
+        Date daysAgo = Date.from(Instant.now().minus(7, ChronoUnit.DAYS));
         return exchangeRateRepository.findLast7Days(daysAgo);
     }
 
@@ -37,13 +39,15 @@ public class ExchangeRateService {
         ExchangeRate response = exchangeRateRepository.findById(id).orElseThrow(
             () -> new RuntimeException("Não encontrado")
         );
-        response = exchangeRate;
-        return response;
+        response.setCurrency_id(exchangeRate.getCurrency_id());
+        response.setDaily_rate(exchangeRate.getDaily_rate());
+        response.setDaily_variation(exchangeRate.getDaily_variation());
+        return exchangeRateRepository.save(response);
     }
 
     @Transactional
     public void deleteOld() {
-        LocalDate oldDate = LocalDate.now().minusDays(30);
+        Date oldDate = Date.from(Instant.now().minus(30, ChronoUnit.DAYS));
         exchangeRateRepository.deleteOld(oldDate);
     }
 }

@@ -3,12 +3,15 @@ package com.gabrielfernandes.giro_tech.entity;
 import java.io.Serializable;
 import java.util.Date;
 
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
+import jakarta.persistence.Temporal;
+import jakarta.persistence.TemporalType;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -22,6 +25,7 @@ public class ExchangeRate implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name= "id")
     private int id;
+    @Temporal(TemporalType.DATE)
     @Column(name = "date", nullable = false)
     private Date date;
     @Column(name = "daily_variation", nullable = false)
