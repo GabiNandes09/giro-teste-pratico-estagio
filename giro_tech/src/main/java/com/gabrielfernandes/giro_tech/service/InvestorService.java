@@ -24,4 +24,9 @@ public class InvestorService {
     public List<Investor> getAll() {
         return investorRepository.findAll();
     }
+
+    @Transactional
+    public void delete(int id) {
+        investorRepository.deleteById(id);
+    }
 }

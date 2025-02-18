@@ -31,4 +31,19 @@ public class ExchangeRateService {
         LocalDate daysAgo = LocalDate.now().minusDays(7);
         return exchangeRateRepository.findLast7Days(daysAgo);
     }
+
+    @Transactional
+    public ExchangeRate update(int id, ExchangeRate exchangeRate){
+        ExchangeRate response = exchangeRateRepository.findById(id).orElseThrow(
+            () -> new RuntimeException("Não encontrado")
+        );
+        response = exchangeRate;
+        return response;
+    }
+
+    @Transactional
+    public void deleteOld() {
+        LocalDate oldDate = LocalDate.now().minusDays(30);
+        exchangeRateRepository.deleteOld(oldDate);
+    }
 }
