@@ -15,7 +15,7 @@ import lombok.Setter;
 
 @Getter @Setter @NoArgsConstructor @AllArgsConstructor
 @Entity
-@Table(name = "investiment_historys")
+@Table(name = "investment_histories")
 public class InvestmentHistory implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

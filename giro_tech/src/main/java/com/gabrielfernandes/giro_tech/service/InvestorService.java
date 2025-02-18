@@ -6,14 +6,17 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.gabrielfernandes.giro_tech.entity.Investor;
+import com.gabrielfernandes.giro_tech.repository.InvestmentHistoryRepository;
 import com.gabrielfernandes.giro_tech.repository.InvestorRepository;
 
+import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
 
 @RequiredArgsConstructor
 @Service
 public class InvestorService {
     private final InvestorRepository investorRepository;
+    private final InvestmentHistoryRepository investmentHistoryRepository;
 
     @Transactional
     public Investor save(Investor investor) {
@@ -27,6 +30,10 @@ public class InvestorService {
 
     @Transactional
     public void delete(int id) {
+        if (!investorRepository.existsById(id)) {
+            throw new EntityNotFoundException("Investidor não encontrado!");
+        }
+        investmentHistoryRepository.deleteByInvestorId(id);
         investorRepository.deleteById(id);
     }
 }
