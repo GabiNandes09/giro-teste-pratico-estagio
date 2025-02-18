@@ -20,6 +20,15 @@ public class InvestorService {
 
     @Transactional
     public Investor save(Investor investor) {
+        if (investor == null) {
+            throw new IllegalArgumentException("O investidor não pode ser nulo.");
+        }
+        if (investor.getName() == null || investor.getName().trim().isEmpty()) {
+            throw new IllegalArgumentException("O nome é obrigatório.");
+        }
+        if (investor.getEmail() == null || investor.getEmail().trim().isEmpty()) {
+            throw new IllegalArgumentException("O email é obrigatório.");
+        }
         return investorRepository.save(investor);
     }
 

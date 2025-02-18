@@ -20,6 +20,16 @@ public class ExchangeRateService {
 
     @Transactional
     public ExchangeRate save(ExchangeRate exchangeRate) {
+        if (exchangeRate == null) {
+            throw new IllegalArgumentException("A Taxa de cambio não pode ser nula.");
+        }
+        if (exchangeRate.getDate() == null) {
+            throw new IllegalArgumentException("A data não pode ser nula.");
+        }
+        if (exchangeRate.getCurrency_id() <= 0) {
+            throw new IllegalArgumentException("A moeda deve ter id válido.");
+        }
+
         return exchangeRateRepository.save(exchangeRate);
     }
 
