@@ -1,6 +1,8 @@
 package com.gabrielfernandes.giro_tech.web.controller;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -49,8 +51,13 @@ public class ExchangeRateController {
     }
 
     @DeleteMapping("/old")
-    public ResponseEntity<ExchangeRate> deleteOld(){
-         exchangeRateService.deleteOld();
-        return ResponseEntity.ok().build();
+    public ResponseEntity<Map<String, Object>> deleteOld(){
+        int deletedCount = exchangeRateService.deleteOld();
+
+        Map<String, Object> response = new HashMap<>();
+        response.put("deletedCount", deletedCount);
+        response.put("message", deletedCount > 0 ? "Registros deletados com sucesso!" : "Nenhum registro encontrado para deletar.");
+        
+        return ResponseEntity.ok().body(response);
     }
 }

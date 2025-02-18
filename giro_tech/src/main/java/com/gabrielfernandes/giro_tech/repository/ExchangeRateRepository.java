@@ -4,8 +4,10 @@ import java.util.Date;
 import java.util.List;
 
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.gabrielfernandes.giro_tech.entity.ExchangeRate;
 
@@ -13,6 +15,8 @@ public interface ExchangeRateRepository extends JpaRepository<ExchangeRate, Inte
     @Query("SELECT e FROM ExchangeRate e WHERE e.date >= :startDate")
     List<ExchangeRate> findLast7Days(@Param("startDate") Date startDate);
 
+    @Modifying
     @Query("DELETE FROM ExchangeRate WHERE date < :oldDate")
-    void deleteOld(@Param("oldDate") Date oldDate);
+    @Transactional
+    int deleteOld(@Param("oldDate") Date oldDate);
 }

@@ -46,8 +46,8 @@ public class ExchangeRateService {
     }
 
     @Transactional
-    public void deleteOld() {
+    public int deleteOld() {
         Date oldDate = Date.from(Instant.now().minus(30, ChronoUnit.DAYS));
-        exchangeRateRepository.deleteOld(oldDate);
+        return exchangeRateRepository.deleteOld(oldDate);
     }
 }
