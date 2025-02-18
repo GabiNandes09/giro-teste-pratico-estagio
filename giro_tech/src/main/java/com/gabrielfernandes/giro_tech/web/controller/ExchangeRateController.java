@@ -32,4 +32,10 @@ public class ExchangeRateController {
         List<ExchangeRate> response = exchangeRateService.getAll();
         return ResponseEntity.ok().body(response);
     }
+
+    @GetMapping("/recent")
+    public ResponseEntity<List<ExchangeRate>> getRecent(){
+        List<ExchangeRate> response = exchangeRateService.getRecent();
+        return ResponseEntity.ok().body(response);
+    }
 }

@@ -31,5 +31,5 @@ public class CurrencyController {
     public ResponseEntity<List<CurrencyEntity>> getAll(){
         List<CurrencyEntity> response = currencyService.getAll();
         return ResponseEntity.ok().body(response);
-    }
+    }    
 }

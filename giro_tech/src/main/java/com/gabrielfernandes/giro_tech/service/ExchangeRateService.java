@@ -1,5 +1,6 @@
 package com.gabrielfernandes.giro_tech.service;
 
+import java.time.LocalDate;
 import java.util.List;
 
 import org.springframework.stereotype.Service;
@@ -23,5 +24,11 @@ public class ExchangeRateService {
     @Transactional(readOnly = true)
     public List<ExchangeRate> getAll() {
         return exchangeRateRepository.findAll();
+    }
+
+    @Transactional(readOnly = true)
+    public List<ExchangeRate> getRecent(){
+        LocalDate daysAgo = LocalDate.now().minusDays(7);
+        return exchangeRateRepository.findLast7Days(daysAgo);
     }
 }
