@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import jakarta.persistence.*;
 
@@ -25,12 +26,4 @@ public class CurrencyEntity implements Serializable {
     private String name;
     @Column(name = "type", nullable = false)
     private String type;
-
-    @OneToMany(mappedBy = "currency", cascade = CascadeType.ALL, orphanRemoval = true)
-    @JsonBackReference
-    private List<ExchangeRate> ExchangeRates = new ArrayList<>();
-
-    @OneToMany(mappedBy = "currency", cascade = CascadeType.ALL, orphanRemoval = true)
-    @JsonBackReference
-    private List<InvestmentHistory> investimentHistories = new ArrayList<>();
 }

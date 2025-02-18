@@ -1,14 +1,13 @@
 package com.gabrielfernandes.giro_tech.entity;
 
-import java.sql.Date;
+import java.io.Serializable;
+import java.util.Date;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -18,7 +17,7 @@ import lombok.Setter;
 @Getter @Setter @NoArgsConstructor @AllArgsConstructor
 @Entity
 @Table(name = "exchange_rates")
-public class ExchangeRate {
+public class ExchangeRate implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name= "id")
@@ -26,10 +25,9 @@ public class ExchangeRate {
     @Column(name = "date", nullable = false)
     private Date date;
     @Column(name = "daily_variation", nullable = false)
-    private float dailyVariation;
+    private float daily_variation;
     @Column(name = "daily_rate", nullable = false)
-    private float dailyRate;
-    @ManyToOne
-    @JoinColumn(name = "currencyId", nullable = false)
-    private CurrencyEntity currency;
+    private float daily_rate;
+    @Column(name = "currency_id", nullable = false)
+    private int currency_id;
 }

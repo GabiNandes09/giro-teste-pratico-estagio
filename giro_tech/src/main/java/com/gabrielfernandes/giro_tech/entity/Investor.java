@@ -1,5 +1,6 @@
 package com.gabrielfernandes.giro_tech.entity;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -15,7 +16,7 @@ import lombok.Setter;
 @Getter @Setter @NoArgsConstructor @AllArgsConstructor
 @Entity
 @Table(name = "investors")
-public class Investor {
+public class Investor implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
@@ -24,8 +25,4 @@ public class Investor {
     private String name;
     @Column(name = "email", nullable = false, unique = true)
     private String email;
-
-    @OneToMany(mappedBy = "investor", cascade = CascadeType.ALL, orphanRemoval = true)
-    @JsonBackReference
-    private List<InvestmentHistory> investimentHistories = new ArrayList<>();
 }
